@@ -179,7 +179,7 @@
 					"response": []
 				},
 				{
-					"name": "Listar Dispositivos (IoT Agent)",
+					"name": "List Devices (IoT Agent)",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -210,7 +210,7 @@
 					"response": []
 				},
 				{
-					"name": "Deletar Dispositivo (Iot Agent)",
+					"name": "Delete Device (IoT Agent)",
 					"request": {
 						"method": "DELETE",
 						"header": [
