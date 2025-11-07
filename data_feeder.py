@@ -1,5 +1,9 @@
 import requests, random, time
 
+# Henrique Keigo Nakashima Minowa - RM:564091
+# Eduardo Delorenzo Moraes - RM:561749
+# Matheus Bispo Faria Barbosa - RM:562140
+
 IOT_AGENT_URL = "http://20.63.91.180:7896/iot/d?k=health-api-key&i=dev-esp32-001"
 distance_total = 0.0  # valor acumulado
 

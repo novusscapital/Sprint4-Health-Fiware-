@@ -2,6 +2,11 @@ from dash import Dash, html, dcc, Output, Input
 import requests
 import random
 
+# Henrique Keigo Nakashima Minowa - RM:564091
+# Eduardo Delorenzo Moraes - RM:561749
+# Matheus Bispo Faria Barbosa - RM:562140
+
+
 external_stylesheets =[
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 ]
