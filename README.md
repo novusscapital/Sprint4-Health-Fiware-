@@ -161,4 +161,7 @@ O **HealthD01** busca demonstrar como a tecnologia IoT pode ser aplicada no **es
 
 ## 🩵 **Licença**
 
-Este projeto foi desenvolvido como parte do curso de **Engenharia de Computação – FIAP**, no módulo de **IoT e Soluções Inteligentes**, para fins educacionais e demonstrativos.
+Este projeto foi desenvolvido como parte do curso de **Engenharia de Software – FIAP**, no módulo de **IoT e Soluções Inteligentes**, para fins educacionais e demonstrativos.
+
+## Links
+Wowki: [Sprint4-Wowki](https://wokwi.com/projects/446903311616021505)
