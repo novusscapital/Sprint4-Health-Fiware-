@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "dacfb08f-5327-4951-9515-7028fb567523",
+		"name": "Sprint4 -- Health Monitor (FIWARE)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48926615",
+		"_collection_link": "https://rm562140-9764866.postman.co/workspace/Sprint4~75220bfc-21dc-43fb-934b-bbd6418070ec/collection/48926615-dacfb08f-5327-4951-9515-7028fb567523?action=share&source=collection_link&creator=48926615"
+	},
+	"item": [
+		{
+			"name": "Health Checks",
+			"item": [
+				{
+					"name": "IoT Agent MQTT - Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:4041/iot/about",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"about"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion Context Broker - Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:1026/version",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "1026",
+							"path": [
+								"version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "STH-Comet - Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}:8666/version",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "8666",
+							"path": [
+								"version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Provisioning",
+			"item": [
+				{
+					"name": "Create Service Group (IoT Agent)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Fiware-Service",
+								"value": "{{fiwareService}}"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "{{fiwareServicePath}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"services\": [\n    {\n      \"apikey\": \"{{apiKey}}\",\n      \"cbroker\": \"http://orion:1026\",\n      \"entity_type\": \"HealthUser\",\n      \"resource\": \"/iot/d\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{url}}:4041/iot/services",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Health Device (IoT Agent)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Fiware-Service",
+								"value": "{{fiwareService}}"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "{{fiwareServicePath}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"devices\": [\n    {\n      \"device_id\": \"dev-esp32-001\",\n      \"entity_name\": \"Player:0001\",\n      \"entity_type\": \"HealthUser\",\n      \"protocol\": \"PDI-IoTA-UltraLight\",\n      \"transport\": \"HTTP\",\n      \"timezone\": \"America/Sao_Paulo\",\n      \"attributes\": [\n        {\n          \"object_id\": \"t\",\n          \"name\": \"bodyTemperature\",\n          \"type\": \"Float\"\n        },\n        {\n          \"object_id\": \"h\",\n          \"name\": \"heartRate\",\n          \"type\": \"Integer\"\n        },\n        {\n          \"object_id\": \"d\",\n          \"name\": \"distanceKm\",\n          \"type\": \"Float\"\n        }\n      ],\n      \"static_attributes\": [\n        {\n          \"name\": \"status\",\n          \"type\": \"Text\",\n          \"value\": \"normal\"\n        }\n      ]\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{url}}:4041/iot/devices",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Services (IoT Agent)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Fiware-Service",
+								"value": "health",
+								"type": "text"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}:4041/iot/services",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Dispositivos (IoT Agent)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Fiware-Service",
+								"value": "health",
+								"type": "text"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}:4041/iot/devices",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Dispositivo (Iot Agent)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Fiware-Service",
+								"value": "health",
+								"type": "text"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}:4041/iot/devices/dev-esp32-001",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"devices",
+								"dev-esp32-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Service Group (IoT Agent)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Fiware-Service",
+								"value": "health",
+								"type": "text"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}:4041/iot/services?resource=/iot/d&apikey=health-api-key",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"services"
+							],
+							"query": [
+								{
+									"key": "resource",
+									"value": "/iot/d"
+								},
+								{
+									"key": "apikey",
+									"value": "health-api-key"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Simulated Measurements (HTTP via IoT Agent)",
+			"item": [
+				{
+					"name": "Send Health Metrics (Ultralight over HTTP)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain"
+							},
+							{
+								"key": "Fiware-Service",
+								"value": "{{fiwareService}}"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "{{fiwareServicePath}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "t|37.4|h|162|d|7.2"
+						},
+						"url": {
+							"raw": "http://{{url}}:4041/iot/d?k={{apiKey}}&i=dev-esp32-001",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"d"
+							],
+							"query": [
+								{
+									"key": "k",
+									"value": "{{apiKey}}"
+								},
+								{
+									"key": "i",
+									"value": "dev-esp32-001"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Envia métricas simuladas do usuário (temperatura, frequência cardíaca e distância) para o IoT Agent via Ultralight HTTP. O IoT Agent atualiza a entidade `HealthUser:dev-esp32-001` no Orion."
+		},
+		{
+			"name": "Context & History",
+			"item": [
+				{
+					"name": "Get Player Context (Orion)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Fiware-Service",
+								"value": "health"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "/"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}:1026/v2/entities",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Heart Rate History (STH-Comet)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Fiware-Service",
+								"value": "{{fiwareService}}"
+							},
+							{
+								"key": "Fiware-ServicePath",
+								"value": "{{fiwareServicePath}}"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}:8666/STH/v1/contextEntities/type/HealthUser/id/Player:0001/attributes/heartRate?lastN=10",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "8666",
+							"path": [
+								"STH",
+								"v1",
+								"contextEntities",
+								"type",
+								"HealthUser",
+								"id",
+								"Player:0001",
+								"attributes",
+								"heartRate"
+							],
+							"query": [
+								{
+									"key": "lastN",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost"
+		},
+		{
+			"key": "fiwareService",
+			"value": "health"
+		},
+		{
+			"key": "fiwareServicePath",
+			"value": "/"
+		},
+		{
+			"key": "apiKey",
+			"value": "health-api-key"
+		}
+	]
+}
